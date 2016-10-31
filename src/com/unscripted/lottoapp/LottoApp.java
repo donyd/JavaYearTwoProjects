@@ -53,13 +53,16 @@ public class LottoApp {
         // checkLotto()
         for(int i = 0; i < 3; i++){
             for(int j = 0; j < 6; j++){
-                if (i == 0 && secretNo[j] == userGuesses[i][j]){
-                    lineOneGuessedRight++;
-                } else if (i == 1 && secretNo[j] == userGuesses[i][j]){
-                    lineTwoGuessedRight++;
-                } else if (i == 2 && secretNo[j] == userGuesses[i][j]){
-                    lineThreeGuessedRight++;
+                for(int k = 0; k < 6; k++){
+                    if (i == 0 && secretNo[k] == userGuesses[i][j]){
+                        lineOneGuessedRight++;
+                    } else if (i == 1 && secretNo[k] == userGuesses[i][j]){
+                        lineTwoGuessedRight++;
+                    } else if (i == 2 && secretNo[k] == userGuesses[i][j]){
+                        lineThreeGuessedRight++;
+                    }
                 }
+                
             }
         }
         
