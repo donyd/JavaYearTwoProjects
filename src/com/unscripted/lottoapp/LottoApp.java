@@ -14,6 +14,11 @@ import javax.swing.JOptionPane;
  */
 public class LottoApp {
 
+    public static int getUserInput(int i, int j){
+        return Integer.parseInt(JOptionPane.showInputDialog(null,"Please enter number " + (j + 1) + 
+                         " for line " + (i + 1) +  ". One number only once per line"));
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -40,9 +45,15 @@ public class LottoApp {
         while(userNumOfTriesAllowed > 0){
             for (int i = 0; i < 3; i++){
                 for (int j = 0; j < 6; j++){
-                   userGuesses[i][j] = Integer.parseInt(JOptionPane.showInputDialog(null, "Please enter your number: You have 6 ")); 
+                    int input = getUserInput(i, j);
+                    if (input < 1 || input > 47){
+                        JOptionPane.showMessageDialog(null, "Please enter a digit between 1 and 47");
+                    } else {
+                        userGuesses[i][j] = input;
+                    }
                 }
                 userNumOfTriesAllowed--;
+                                               
             }
             
         }
