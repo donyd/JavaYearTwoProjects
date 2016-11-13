@@ -13,11 +13,35 @@ import javax.swing.JOptionPane;
  * @author dONY
  */
 public class LottoApp {
-
+    // gets the user input and displays the current line and number
     public static int getUserInput(int i, int j){
         return Integer.parseInt(JOptionPane.showInputDialog(null,"Please enter number " + (j + 1) + 
                          " for line " + (i + 1) +  ". One number only once per line"));
     }
+    
+   /* public static int[] SecretNumberGenerator(){
+        final int RANGE = 46;
+        int[] secretNo = new int[6];
+        int[] duplicateChk = new int[6];
+        int cache = 0;
+        
+        // int numCheck = (int)((Math.random() * RANGE) +1);
+        
+        for(int i = 0; i < secretNo.length; i++){
+            for(int j = 0; i < (i + 1); j++){
+                cache = (int) ((Math.random() * RANGE) + 1);
+                secretNo[i] = cache;
+                duplicateChk[i] = cache + 1;
+                if (secretNo[i] != duplicateChk[i]){
+                    secretNo[i] = cache;
+                }
+                duplicateChk[i] = cache;
+            }
+            
+        }
+        
+        return secretNo;
+    }*/
     
     /**
      * @param args the command line arguments
@@ -39,21 +63,21 @@ public class LottoApp {
         }
         
         System.out.println(Arrays.toString(secretNo));
+        //System.out.println("This is from the static random generator: " + Arrays.toString(SecretNumberGenerator()));
         
         // Input
-        // getUserInput()
+        
         while(userNumOfTriesAllowed > 0){
             for (int i = 0; i < 3; i++){
                 for (int j = 0; j < 6; j++){
                     int input = getUserInput(i, j);
-                    if (input < 1 || input > 47){
-                        JOptionPane.showMessageDialog(null, "Please enter a digit between 1 and 47");
-                    } else {
-                        userGuesses[i][j] = input;
+                    while (input < 1 || input > 47){
+                        JOptionPane.showMessageDialog(null, "Please enter a number between 1 and 47");
+                        input = getUserInput(i, j);
                     }
+                    userGuesses[i][j] = input;
                 }
                 userNumOfTriesAllowed--;
-                                               
             }
             
         }
@@ -81,6 +105,18 @@ public class LottoApp {
         JOptionPane.showMessageDialog(null, "You guessed " + lineOneGuessedRight + " on line 1\n" +
                 lineTwoGuessedRight + " on line 2 and\n" + lineThreeGuessedRight + " on line 3");
         
+        if (lineOneGuessedRight == 3 || lineTwoGuessedRight == 3 || lineThreeGuessedRight == 3){
+            JOptionPane.showMessageDialog(null, "You guessed three numbers right\n You win € 50!");
+        } else if (lineOneGuessedRight == 4 || lineTwoGuessedRight == 4 || lineThreeGuessedRight == 4){
+            JOptionPane.showMessageDialog(null, "You guessed four numbers right\n You win € 250!!");
+        } else if (lineOneGuessedRight == 5 || lineTwoGuessedRight == 5 || lineThreeGuessedRight == 5){
+            JOptionPane.showMessageDialog(null, "You guessed five numbers right\n You win € 250,000!!!");
+        } else if (lineOneGuessedRight == 6 || lineTwoGuessedRight == 6 || lineThreeGuessedRight == 6){
+            JOptionPane.showMessageDialog(null, "You guessed six numbers right\n You win € 4 million!!!!!");
+        } else {
+            JOptionPane.showMessageDialog(null, "Sorry you didn't win anything. Good luck with the next game" + "\nThe winning numbers were\n" + Arrays.toString(secretNo));
+            
+        }
         
     }
     
