@@ -23,7 +23,7 @@ public class LottoApp {
         int range = 46;
         int userNumOfTriesAllowed = 3;
         String results = new String();
-        // 
+        
         int[][] userGuesses = new int[3][6]; 
         
         // Guesses per line
