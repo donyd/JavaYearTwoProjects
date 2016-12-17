@@ -14,7 +14,7 @@ import javax.swing.JOptionPane;
  */
 public class Lotto {
     private int[] secretNo = new int[6];
-    private int range;
+    private final int RANGE = 46;
     private int userNumOfTriesAllowed;
     private String results = new String();
     private int lineOneGuessedRight;
@@ -25,7 +25,6 @@ public class Lotto {
     // Constructore
     public Lotto(){
         this.secretNo = this.Randomizer();
-        this.range = 46;
         this.userNumOfTriesAllowed = 3;
         this.lineOneGuessedRight = 0;
         this.lineTwoGuessedRight = 0;
@@ -33,9 +32,11 @@ public class Lotto {
         this.userGuesses = new int[3][6];
     }
     
+   
+    
     private int[] Randomizer(){
         for (int i = 0; i < secretNo.length; i++){
-            secretNo[i] = (int) ((Math.random() * range) + 1);
+            secretNo[i] = (int) ((Math.random() * RANGE) + 1);
         }
         return secretNo;
     }
@@ -113,5 +114,23 @@ public class Lotto {
             }
             return userEntry.toString();
         }
-      
+     
+     
+      /*     Debugging & Testing Methods     */
+    public int[] getSecretNo(){
+        return this.secretNo;
+    }
+    
+    public int[][] getUserGuesses(){
+        return this.userGuesses;
+    }
+     
+     public String showArrayContent(int[] arr){
+         return Arrays.toString(arr);
+     }
+     
+     public String showArrayContent(int[][] arr){
+         return ArrayBuilder(arr);
+     }
+           
 }
