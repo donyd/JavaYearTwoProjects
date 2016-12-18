@@ -12,6 +12,7 @@ import java.awt.Image;
 import java.awt.Toolkit;
 import java.io.File;
 import java.net.URL;
+import java.util.Arrays;
 import javax.imageio.ImageIO;
 /**
  *
@@ -40,6 +41,8 @@ public class LottoApp {
         JButton start = newGame.getStartButton();
       
        newGame.add(start, BorderLayout.SOUTH);
+       
+     //  System.out.println(Arrays.toString(newGame.getUserGuesses()));
         
 
 

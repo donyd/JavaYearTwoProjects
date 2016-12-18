@@ -7,6 +7,8 @@ package com.unscripted.lottoapp;
 
 import java.util.Arrays;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
+import javax.swing.text.JTextComponent;
 
 /**
  *
@@ -57,6 +59,20 @@ public class Lotto {
             
         }
     }
+    
+    public int[][] getUserGuesses(){
+        return userGuesses;
+    }
+    
+    public void setUserGuesses(int i, int j, JTextField userEntry){
+        if (userEntry.getText().length() != 0){
+            userGuesses[i][j] = Integer.parseInt(userEntry.getText());
+        } else {
+            userGuesses[i][j] = 0;
+        }
+    }
+    
+
     
     private int getUserInput(int i, int j){
         return Integer.parseInt(JOptionPane.showInputDialog(null,"Please enter number " + (j + 1) + 
@@ -121,10 +137,7 @@ public class Lotto {
         return this.secretNo;
     }
     
-    public int[][] getUserGuesses(){
-        return this.userGuesses;
-    }
-     
+      
      public String showArrayContent(int[] arr){
          return Arrays.toString(arr);
      }

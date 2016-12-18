@@ -5,9 +5,9 @@
  */
 package com.unscripted.lottoapp;
 
-import javax.swing.text.AttributeSet;
-import javax.swing.text.BadLocationException;
-import javax.swing.text.PlainDocument;
+import javax.swing.text.*;
+//import javax.swing.text.BadLocationException;
+//import javax.swing.text.PlainDocument;
 
 /**
  *
