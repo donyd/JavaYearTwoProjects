@@ -19,17 +19,17 @@ import javax.imageio.ImageIO;
  */
 public class LottoApp {
     public static void main(String[] args){
-       // Lotto myGame = new Lotto();
-        
-        
-      //System.out.println(myGame.showArrayContent(myGame.getSecretNo()));
-        
-     // myGame.getUserTry();
-        
-     // System.out.println(myGame.showArrayContent(myGame.getUserGuesses()));
-        
-     // myGame.checkUserEntries();
-     // myGame.showResults();
+//      Lotto myGame = new Lotto();
+//        
+//        
+//      System.out.println(myGame.showArrayContent(myGame.getSecretNo()));
+//        
+//      myGame.getUserTry();
+//        
+//      System.out.println(myGame.showArrayContent(myGame.getUserGuesses()));
+//        
+//      myGame.checkUserEntries();
+//      myGame.showResults();
         
         LottoGUI newGame = new LottoGUI();
         
@@ -38,10 +38,10 @@ public class LottoApp {
         newGame.setVisible(true);
         
         JButton start = newGame.getStartButton();
-                
-        //newGame.add(title, BorderLayout.NORTH);
-        newGame.add(start, BorderLayout.SOUTH);
+      
+       newGame.add(start, BorderLayout.SOUTH);
         
+
 
         
        
