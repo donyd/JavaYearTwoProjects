@@ -10,6 +10,14 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.text.JTextComponent;
 
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.IOException;
+import java.util.ArrayList;
+
 /**
  *
  * @author dONY
@@ -65,6 +73,14 @@ public class Lotto {
     }
     
     public void setUserGuesses(int i, int j, JTextField userEntry){
+        if (userEntry.getText().length() != 0){
+            userGuesses[i][j] = Integer.parseInt(userEntry.getText());
+        } else {
+            userGuesses[i][j] = 0;
+        }
+    }
+    
+    public void getUserGuesses(int i, int j, JTextField userEntry){
         if (userEntry.getText().length() != 0){
             userGuesses[i][j] = Integer.parseInt(userEntry.getText());
         } else {
@@ -132,6 +148,44 @@ public class Lotto {
         }
      
      
+     public void saveGame(int[] input){
+         try {
+             File file = new File("src/resources/gamestate.txt");
+             FileWriter fileWriter = new FileWriter(file);
+             BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+             
+             String deciphered = showArrayContent(input);
+             bufferedWriter.write(deciphered + "\n" );
+             JOptionPane.showMessageDialog(null, "Numbers saved");
+             bufferedWriter.close();
+             
+         } catch (IOException e){
+             System.out.println(e.toString());
+             System.out.println("Problem writing to file");
+         }
+     }
+     
+     public void loadGame(){
+         try{
+             File file = new File("src/resources/gamestate.txt");
+             FileReader fileReader = new FileReader(file);
+             
+             BufferedReader bufferedReader = new BufferedReader(fileReader);
+             String line;
+             line = bufferedReader.readLine();
+             
+             
+             bufferedReader.close();
+             JOptionPane.showMessageDialog(null, "Numbers successfully loaded" + file);
+             int[] i = fromString(line);
+             
+         } catch (IOException e){
+             System.out.println(e.toString());
+             System.out.println("Problem writing to File");
+         }
+         
+     }
+     
       /*     Debugging & Testing Methods     */
     public int[] getSecretNo(){
         return this.secretNo;
@@ -145,5 +199,15 @@ public class Lotto {
      public String showArrayContent(int[][] arr){
          return ArrayBuilder(arr);
      }
-           
-}
+     
+     // Code taken from stackoverflow http://stackoverflow.com/questions/456367/reverse-parse-the-output-of-arrays-tostringint
+      private static int[] fromString(String string) {
+    String[] strings = string.replace("[", "").replace("]", "").split(", ");
+    int result[] = new int[strings.length];
+    for (int i = 0; i < result.length; i++) {
+      result[i] = Integer.parseInt(strings[i]);
+    }
+    return result;
+  }
+}     
+     
